@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from routes import root, librarian_auth, student_auth
+from routes import root, librarian_auth, student_auth, student_info
 import os
 from functools import lru_cache
 from dotenv import load_dotenv
@@ -30,3 +30,4 @@ app.add_middleware(
 app.include_router(root.router)
 app.include_router(librarian_auth.router)
 app.include_router(student_auth.router)
+app.include_router(student_info.router)
