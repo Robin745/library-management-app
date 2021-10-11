@@ -24,6 +24,7 @@ class StudentSignup(BaseModel):
     roll: int
     department: str
     batch: int
+    username: str
     password: str
 
     class Config:
@@ -44,6 +45,7 @@ class StudentInDB(BaseModel):
     roll: int
     department: str
     batch: int
+    username: str
     hashed_password: str
     disabled: bool
     fine: Optional[float] = None
@@ -59,6 +61,7 @@ class StudentInDB(BaseModel):
 class StudentInfo(BaseModel):
     id: PyObjectId = Field(default_factory=PyObjectId, alias="_id")
     full_name: str
+    username: str
     roll: int
     department: str
     batch: int

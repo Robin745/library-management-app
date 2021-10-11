@@ -21,7 +21,7 @@ oauth2_scheme = OAuth2PasswordBearer(tokenUrl="student_login")
 router = APIRouter()
 
 
-@router.get("/student_login", response_model=Token)
+@router.post("/student_login", response_model=Token)
 async def student_login_for_access_token(form_data: OAuth2PasswordRequestForm = Depends()):
     user = await authenticated_user(form_data.username, form_data.password)
     if not user:
