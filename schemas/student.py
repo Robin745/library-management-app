@@ -34,9 +34,14 @@ class StudentSignup(BaseModel):
     
 
 class BorrowedBook(BaseModel):
-    book_code: int
+    book_id: str
     issue_date: str
     return_date: str
+
+    class Config:
+        allow_population_by_field_name = True
+        arbitrary_types_allowed = True
+        json_encoders = {ObjectId: str}
     
 
 class StudentInDB(BaseModel):
@@ -49,7 +54,8 @@ class StudentInDB(BaseModel):
     hashed_password: str
     disabled: bool
     fine: Optional[float] = None
-    book_info: Optional[BorrowedBook] = None
+    book_info: Optional[dict] = None
+    book_req: Optional[str] = None
 
     class Config:
         allow_population_by_field_name = True
@@ -67,6 +73,7 @@ class StudentInfo(BaseModel):
     batch: int
     fine: Optional[float] = None
     book_info: Optional[BorrowedBook] = None
+    book_req: Optional[str] = None
 
     class Config:
         allow_population_by_field_name = True

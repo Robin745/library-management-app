@@ -17,21 +17,17 @@ class PyObjectId(ObjectId):
     @classmethod
     def __modify_schema__(cls, field_schema):
         field_schema.update(type="string")
-
         
-class BookInfo(BaseModel):
-    author: str
-    title: str
-    stock_date: str
-    in_stock: bool
-    return_date: Optional[str]
 
-
-
-class BookInDB(BaseModel):
+class Book(BaseModel):
     id: PyObjectId = Field(default_factory=PyObjectId, alias="_id")
     author: str
     title: str
     stock_date: str
     in_stock: bool
-    return_date: Optional[str]
+    return_date: Optional[str] = None
+
+    class Config:
+        allow_population_by_field_name = True
+        arbitrary_types_allowed = True
+        json_encoders = {ObjectId: str}

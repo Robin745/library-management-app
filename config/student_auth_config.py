@@ -27,7 +27,7 @@ ALGORITHM = os.environ.get("ALGORITHM")
 
 pass_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
-oauth2_scheme = OAuth2PasswordBearer(tokenUrl="student_login")
+oauth2_scheme2 = OAuth2PasswordBearer(tokenUrl="student_login")
 
 def verify_password(plain_password, hashed_password):
     return pass_context.verify(plain_password, hashed_password)
@@ -61,7 +61,7 @@ def create_access_token(data: dict, expires_delta: Optional[timedelta] = None):
     return encoded_jwt
 
 
-async def get_current_user(token: str = Depends(oauth2_scheme)):
+async def get_current_user(token: str = Depends(oauth2_scheme2)):
     credentials_exception = HTTPException(
         status_code=status.HTTP_401_UNAUTHORIZED,
         detail="Could not validate credentials",
